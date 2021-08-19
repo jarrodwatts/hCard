@@ -1,0 +1,9 @@
+.upload-button {
+  width: 95%;
+  background-color: #2c3e50;
+  color: white;
+  min-height: 48px;
+  border-radius: 4px;
+  font-size: 24px;
+  text-align: center;
+}
