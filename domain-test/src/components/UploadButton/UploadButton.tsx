@@ -18,7 +18,9 @@ export default function UploadButton({
       <label htmlFor="upload-button">
         <>
           <button
-            onClick={() => document.getElementById("upload-button")?.click()}
+            onClick={() =>
+              document.getElementById("upload-button-input")?.click()
+            }
             className="upload-button"
             type="button"
           >
