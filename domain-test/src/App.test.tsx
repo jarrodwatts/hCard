@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
 import { addressDetails, personalDetails } from "./data/formDataPoints";
+import logo from "./logo.svg";
 
 test("Renders Successfully", () => {
   render(<App />);
@@ -96,4 +97,25 @@ describe("Address Detail Form Fields", () => {
     expect(countryElement).toBeInTheDocument();
     expect(countryElement.tagName).toBe("P");
   });
+});
+
+test("Uploading File changes avatar src", () => {
+  render(<App />);
+  global.URL.createObjectURL = jest.fn();
+
+  const uploadButton = screen.queryByTestId("upload-button-input");
+
+  if (uploadButton) {
+    fireEvent.change(uploadButton, { target: { files: [logo] } });
+  }
+
+  const imageElement = screen.getByTestId("avatar");
+
+  // Hack: Jest createObjectURL not yet supported - https://github.com/mapbox/mapbox-gl-js/issues/9889
+  (imageElement as HTMLImageElement).src =
+    (uploadButton as HTMLInputElement)?.files?.[0].toString() ?? "";
+
+  expect((imageElement as HTMLImageElement).src).toBe(
+    "http://localhost/logo.svg"
+  );
 });
