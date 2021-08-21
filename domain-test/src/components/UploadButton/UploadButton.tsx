@@ -9,19 +9,12 @@ export default function UploadButton({
   handleImageUpload,
 }: Props): ReactElement {
   return (
-    <>
+    <div data-testid="upload-button">
       <label htmlFor="upload-button">
         <>
           <button
             onClick={() => document.getElementById("upload-button")?.click()}
             className="upload-button"
-            style={{
-              width: "95%",
-              minHeight: 48,
-              borderRadius: 4,
-              fontSize: 24,
-              textAlign: "center",
-            }}
             type="button"
           >
             Upload Avatar
@@ -30,11 +23,12 @@ export default function UploadButton({
       </label>
       <input
         type="file"
-        id="upload-button"
+        id="upload-button-input"
+        data-testid="upload-button-input"
         accept="image/*"
         style={{ display: "none" }}
         onChange={handleImageUpload}
       />
-    </>
+    </div>
   );
 }

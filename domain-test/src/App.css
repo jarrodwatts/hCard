@@ -85,6 +85,11 @@ body {
   background-color: #fff;
 }
 
+.hcard-label {
+  color: #34495e;
+  text-transform: uppercase;
+}
+
 .avatar-frame {
   background-color: #fff;
   padding-top: 16px;

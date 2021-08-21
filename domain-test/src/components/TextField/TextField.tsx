@@ -13,7 +13,7 @@ export default function TextField({
   handleChange,
 }: Props): ReactElement {
   return (
-    <div style={{ marginTop: 16 }}>
+    <div style={{ marginTop: 16 }} data-testid={fieldName}>
       <label className="label" htmlFor={fieldName}>
         {fieldName}
       </label>
