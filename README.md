@@ -1,6 +1,9 @@
 # Jarrod Watts - Domain hCard Builder
 
-App Preview:
+Live Deployment:
+https://h-card-jarrodwatts.vercel.app/
+
+Screenshot:
 ![Screenshot](preview.png)
 
 ## Installation
