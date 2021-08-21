@@ -4,11 +4,13 @@ import "./TextField.css";
 interface Props {
   fieldName: string;
   fieldType: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function TextField({
   fieldName,
   fieldType,
+  handleChange,
 }: Props): ReactElement {
   return (
     <div style={{ marginTop: 16 }}>
@@ -16,6 +18,7 @@ export default function TextField({
         {fieldName}
       </label>
       <input
+        onChange={handleChange}
         className="input"
         type={fieldType}
         id={fieldName}

@@ -24,11 +24,15 @@ body {
   color: white;
 }
 
-.tertiary-theme-color {
-  background-color: #627b8b;
+.secondary-button {
+  width: 95%;
+  min-height: 48px;
+  border-radius: 4px;
+  font-size: 24px;
 }
 
 .grey-bg {
+  background-color: #e1e4e7;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -50,6 +54,55 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-top: 24px;
+}
+
+.hcard-area {
+  width: 90%;
+  margin-left: 8%;
+  margin-right: 8%;
+}
+
+.hcard-base {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.hcard-header {
+  display: flex;
+  height: 128px;
+  padding-left: 32px;
+  padding-right: 16px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hcard-body {
+  min-height: 384px;
+  border: 1px solid #9a9a9a;
+  background-color: #fff;
+}
+
+.avatar-frame {
+  background-color: #fff;
+  padding-top: 16px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-top: 48px;
+  border: solid 2px grey;
+}
+
+.hcard-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.hcard-info-grid-small {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 2fr;
 }
 
 @media (max-width: 850px) {

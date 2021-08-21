@@ -3,8 +3,11 @@ import "./App.css";
 import TextField from "./components/TextField/TextField";
 import avatar from "./avatar.png"; // Tell webpack this JS file uses this image
 import UploadButton from "./components/UploadButton/UploadButton";
+import useForm from "./utils/useForm";
 
 function App() {
+  const { formState, handleChange: changeFormValue } = useForm();
+
   const [image, setImage] = useState<string>();
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,6 +16,8 @@ function App() {
       setImage(URL.createObjectURL(e.target.files[0]));
     }
   };
+
+  console.log(formState);
 
   return (
     <div className="container">
@@ -26,10 +31,26 @@ function App() {
             <h2 className="hint">Personal Details</h2>
             <hr />
             <div className="form-grid">
-              <TextField fieldName={"given name"} fieldType={"text"} />
-              <TextField fieldName={"surname"} fieldType={"text"} />
-              <TextField fieldName={"email"} fieldType={"email"} />
-              <TextField fieldName={"phone"} fieldType={"tel"} />
+              <TextField
+                fieldName={"given name"}
+                fieldType={"text"}
+                handleChange={changeFormValue}
+              />
+              <TextField
+                fieldName={"surname"}
+                fieldType={"text"}
+                handleChange={changeFormValue}
+              />
+              <TextField
+                fieldName={"email"}
+                fieldType={"email"}
+                handleChange={changeFormValue}
+              />
+              <TextField
+                fieldName={"phone"}
+                fieldType={"tel"}
+                handleChange={changeFormValue}
+              />
             </div>
           </div>
 
@@ -38,12 +59,36 @@ function App() {
             <h2 className="hint">Address</h2>
             <hr />
             <div className="form-grid">
-              <TextField fieldName={"house name or #"} fieldType={"number"} />
-              <TextField fieldName={"street"} fieldType={"text"} />
-              <TextField fieldName={"suburb"} fieldType={"text"} />
-              <TextField fieldName={"state"} fieldType={"text"} />
-              <TextField fieldName={"postcode"} fieldType={"number"} />
-              <TextField fieldName={"country"} fieldType={"text"} />
+              <TextField
+                fieldName={"house name or #"}
+                fieldType={"number"}
+                handleChange={changeFormValue}
+              />
+              <TextField
+                fieldName={"street"}
+                fieldType={"text"}
+                handleChange={changeFormValue}
+              />
+              <TextField
+                fieldName={"suburb"}
+                fieldType={"text"}
+                handleChange={changeFormValue}
+              />
+              <TextField
+                fieldName={"state"}
+                fieldType={"text"}
+                handleChange={changeFormValue}
+              />
+              <TextField
+                fieldName={"postcode"}
+                fieldType={"number"}
+                handleChange={changeFormValue}
+              />
+              <TextField
+                fieldName={"country"}
+                fieldType={"text"}
+                handleChange={changeFormValue}
+              />
 
               <div style={{ marginTop: 32 }}>
                 <UploadButton handleImageUpload={handleImageUpload} />
@@ -51,13 +96,7 @@ function App() {
               <div style={{ marginTop: 32 }}>
                 <button
                   onClick={() => console.log("Submit to API!")}
-                  className="secondary"
-                  style={{
-                    width: "95%",
-                    minHeight: 48,
-                    borderRadius: 4,
-                    fontSize: 24,
-                  }}
+                  className="secondary secondary-button"
                 >
                   Create hCard
                 </button>
@@ -67,68 +106,22 @@ function App() {
         </div>
       </div>
 
-      {/* Right Side / Top Side*/}
-      <div
-        className="section grey-bg"
-        style={{
-          backgroundColor: "#e1e4e7",
-        }}
-      >
-        <div
-          style={{
-            width: "90%",
-            marginLeft: "8%",
-            marginRight: "8%",
-          }}
-        >
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "flex-end",
-            }}
-          >
+      {/* Right Side */}
+      <div className="section grey-bg">
+        <div className="hcard-area">
+          <div className="hcard-base">
             <h2 className="hint" style={{ fontSize: 22, fontWeight: 400 }}>
               hCard Preview
             </h2>
           </div>
 
           {/* Card */}
-          <div
-            style={{
-              minHeight: "384px",
-              border: "1px solid #9a9a9a",
-              background: "#fff",
-            }}
-          >
-            <div
-              className="primary"
-              style={{
-                display: "flex",
-                height: "128px",
-                paddingLeft: 32,
-                paddingRight: 16,
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              {/* Given Name + Surname */}
-              <h2 style={{ color: "white", fontSize: 42 }}>Sam Fairfax</h2>
-
-              {/* Image with overlapping y axis */}
-              <div
-                style={{
-                  background: "#fff",
-                  paddingTop: 16,
-                  paddingBottom: 8,
-                  paddingLeft: 12,
-                  paddingRight: 12,
-                  marginTop: 48,
-                  border: "solid 2px grey",
-                }}
-              >
+          <div className="hcard-body">
+            <div className="primary hcard-header">
+              <h2 style={{ color: "#fff", fontSize: 42 }}>
+                {formState["given name"]} {formState["surname"]}
+              </h2>
+              <div className="avatar-frame">
                 <img
                   src={image ?? avatar}
                   alt="avatar icon"
@@ -138,7 +131,6 @@ function App() {
               </div>
             </div>
 
-            {/* Live updating info */}
             <div
               style={{
                 width: "90%",
@@ -147,17 +139,59 @@ function App() {
                 marginTop: 48,
               }}
             >
-              {/* Field 1 */}
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 5fr",
-                }}
-              >
-                <p style={{ color: "#34495e" }}>EMAIL</p>
-                <p>sam.fairfax@fairfaxmedia.com.au</p>
+              <>
+                <div className="hcard-info-grid">
+                  <>
+                    <p style={{ color: "#34495e" }}>EMAIL</p>
+                    <p>{formState["email"]}</p>
+                  </>
+                </div>
+                <hr style={{ marginTop: -12 }} />
+              </>
+
+              <>
+                <div className="hcard-info-grid">
+                  <>
+                    <p style={{ color: "#34495e" }}>Phone</p>
+                    <p>{formState["phone"]}</p>
+                  </>
+                </div>
+                <hr style={{ marginTop: -12 }} />
+              </>
+
+              <>
+                <div className="hcard-info-grid">
+                  <>
+                    <p style={{ color: "#34495e" }}>Address</p>
+                    <p>
+                      {formState["house name or #"]} {formState["street"]}
+                    </p>
+                  </>
+                </div>
+                <hr style={{ marginTop: -12 }} />
+
+                <div className="hcard-info-grid">
+                  <>
+                    <p></p>
+                    <p>
+                      {formState["suburb"]} {formState["state"]}
+                    </p>
+                  </>
+                </div>
+                <hr style={{ marginTop: -12 }} />
+              </>
+
+              <div style={{ paddingBottom: 32 }}>
+                <div className="hcard-info-grid-small">
+                  <>
+                    <p style={{ color: "#34495e" }}>Postcode</p>
+                    <p>{formState["postcode"]}</p>
+                    <p style={{ color: "#34495e" }}>Country</p>
+                    <p>{formState["country"]}</p>
+                  </>
+                </div>
+                <hr style={{ marginTop: -12 }} />
               </div>
-              <hr />
             </div>
           </div>
         </div>
