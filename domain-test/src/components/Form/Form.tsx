@@ -8,6 +8,12 @@ interface Props {
   handleImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+/**
+ * Form Component of the hCard Builder.
+ * Responsible for managing the values the user inputs into the text fields.
+ * @param changeFormValue: A function to handle what to do when a text field value is modified.
+ * @param handleImageUpload: A function to handle what to do when a file gets uploaded.
+ * */
 export default function Form({
   changeFormValue,
   handleImageUpload,

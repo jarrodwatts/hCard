@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import avatar from "../../avatar.png";
 
 interface Props {
@@ -6,6 +6,11 @@ interface Props {
   image: string | undefined;
 }
 
+/**
+ * Displays the values inputted by the user in a preview hCard format.
+ * @param formState: An object representing the keys (labels) and values of each textfield from the form.
+ * @param image: The URL of the image (if any) the user has uploaded via the form.
+ * */
 export default function HCard({ formState, image }: Props): ReactElement {
   return (
     <div className="section grey-bg">

@@ -5,6 +5,11 @@ interface Props {
   handleImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+/**
+ * Upload Button Masking the default file input from HTML
+ * Uses a button as a label element overlaying a hidden file input field.
+ * @param handleImageUpload: A function of what to do when an image is uploaded by the user.
+ * */
 export default function UploadButton({
   handleImageUpload,
 }: Props): ReactElement {
