@@ -81,7 +81,7 @@ export default function HCard({ formState, image }: Props): ReactElement {
                 <>
                   <p></p>
                   <p>
-                    {formState["suburb"]} {formState["state"]}
+                    {formState["suburb"]}, {formState["state"]}
                   </p>
                 </>
               </div>
