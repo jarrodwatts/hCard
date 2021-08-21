@@ -102,12 +102,12 @@ body {
 
 .hcard-info-grid {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1.5fr 5fr;
 }
 
 .hcard-info-grid-small {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr 2fr;
+  grid-template-columns: 1.7fr 2fr 1.7fr 2fr;
 }
 
 @media (max-width: 850px) {
